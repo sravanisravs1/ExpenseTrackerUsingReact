@@ -1,5 +1,6 @@
 import { useState, useRef, Fragment} from 'react';
 import Alert from 'react-bootstrap/Alert';
+import { NavLink ,useNavigate} from 'react-router-dom';
 import classes from './SignUp.module.css';
 
 
@@ -8,6 +9,7 @@ const Signup = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
+  const history = useNavigate();
 
   const [isLogin, setIsLogin] = useState(true);
   const [loading , setLoading] = useState(false)
@@ -69,6 +71,7 @@ const Signup = () => {
     .then((data) => {   
       if(data){
       console.log('sign up successful')
+      history('/welcome')
       return alert('Success');
       }                   
     })
@@ -114,6 +117,7 @@ return (
             required
           />
         </div>}
+        <NavLink className={classes.forgot}>Forgot Password</NavLink>
         <div className={classes.actions}>
           {loading && <p>Sending request...</p> }
           {!loading && <button>{isLogin ? "Login" : "Create Account"}</button>}
