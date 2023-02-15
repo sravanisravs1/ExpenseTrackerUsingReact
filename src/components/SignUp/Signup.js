@@ -37,9 +37,9 @@ const Signup = () => {
  setLoading(true);
  let url;
     if (isLogin) {
-      url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDRorahRJ_juKatl8aQXmkip1wxxy28S84'
+      url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDdFFH3PYqzMJ8Frau8Bcz5lS2GLl8LH-Q'
     } else {
-      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDRorahRJ_juKatl8aQXmkip1wxxy28S84'
+      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDdFFH3PYqzMJ8Frau8Bcz5lS2GLl8LH-Q'
     }
 
     fetch(url, {
@@ -71,7 +71,7 @@ const Signup = () => {
     .then((data) => {   
       if(data){
       console.log('sign up successful',data)
-      history('/welcome')
+      history('/verifyemail')
       localStorage.setItem("token" , data.idToken);
       return  alert('Success');
       }                   
