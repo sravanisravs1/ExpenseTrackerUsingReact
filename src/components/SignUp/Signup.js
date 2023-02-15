@@ -1,11 +1,13 @@
-import { useState, useRef, Fragment} from 'react';
+import { useState, useRef, Fragment,useContext} from 'react';
 
 import { NavLink ,useNavigate} from 'react-router-dom';
 import classes from './SignUp.module.css';
+import AuthContext from '../../store/Auth-Context';
 
 
 
 const Signup = () => {
+  const authCtx = useContext(AuthContext);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
@@ -70,9 +72,10 @@ const Signup = () => {
     })
     .then((data) => {   
       if(data){
-      console.log('sign up successful',data)
+      console.log('successful',data)
       history('/verifyemail')
       localStorage.setItem("token" , data.idToken);
+      authCtx.setToken(data.idToken);
       return  alert('Success');
       }                   
     })
