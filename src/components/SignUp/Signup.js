@@ -75,7 +75,7 @@ const Signup = () => {
       console.log('successful',data)
       history('/verifyemail')
       localStorage.setItem("token" , data.idToken);
-      authCtx.setToken(data.idToken);
+      //authCtx.setToken(data.idToken);
       return  alert('Success');
       }                   
     })
@@ -121,7 +121,7 @@ return (
             required
           />
         </div>}
-        <NavLink className={classes.forgot}>Forgot Password</NavLink>
+        <NavLink to ='/forgotpassword' className={classes.forgot}>Forgot Password</NavLink>
         <div className={classes.actions}>
           {loading && <p>Sending request...</p> }
           {!loading && <button>{isLogin ? "Login" : "Create Account"}</button>}
