@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //import { ExpenseContextProvider } from "./store/Expense-Context";
 import Signup from './components/SignUp/Signup';
@@ -9,6 +11,8 @@ import VerifyEmail from "./components/pages/VerifyEmail";
 //import { AuthContextProvider } from "./store/Auth-Context";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import Expenses from "./components/pages/Expenses";
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 var router = createBrowserRouter( [
   {
@@ -25,10 +29,17 @@ var router = createBrowserRouter( [
   },
 ]);
 function App() {
+  const darkTheme = useSelector((state) => state.theme.dark);
   return (
     // <AuthContextProvider>
     //   <ExpenseContextProvider>
-      <RouterProvider router={router} />
+    <div 
+      style={{ height: '100vh' }}
+      id={darkTheme ? 'dark' :'light'}
+      className="App">
+        <RouterProvider router={router} />
+    </div>
+      
     //   </ExpenseContextProvider>
     // </AuthContextProvider>
   );
