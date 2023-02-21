@@ -3,6 +3,7 @@ import axios from "axios";
 import classes from "./CompleteProfile.module.css";
 import { Container,Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 function CompleteProfile(props) {
     const history = useNavigate();
@@ -28,7 +29,7 @@ function CompleteProfile(props) {
     const cancelHandler=()=>{
         history('/welcome')
     }
-
+    let idToken = useSelector(state => state.auth.idToken)
     const profileSubmitHandler = async (e) => {
         e.preventDefault();
 
@@ -36,7 +37,8 @@ function CompleteProfile(props) {
         const enteredphotourl = photourl.current.value;
         
 
-        let token = localStorage.getItem('token');
+        //let token = localStorage.getItem('token');
+        
 
         
         
@@ -44,7 +46,7 @@ function CompleteProfile(props) {
             const res = await axios.post(
        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDdFFH3PYqzMJ8Frau8Bcz5lS2GLl8LH-Q",
        {
-         idToken: token,
+         idToken: idToken,
          displayName: enteredFullName,
          photoUrl : enteredphotourl,
        }

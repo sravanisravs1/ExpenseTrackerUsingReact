@@ -2,12 +2,15 @@ import { useState, useRef, Fragment,useContext} from 'react';
 
 import { NavLink ,useNavigate} from 'react-router-dom';
 import classes from './SignUp.module.css';
-import AuthContext from '../../store/Auth-Context';
+//import AuthContext from '../../store/Auth-Context';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/AuthSlicer';
 
 
 
 const Signup = () => {
-  const authCtx = useContext(AuthContext);
+  //const authCtx = useContext(AuthContext);
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmPasswordInputRef = useRef();
@@ -65,7 +68,7 @@ const Signup = () => {
           if(data && data.error && data.error.message) {
           errorMessage = data.error.message
           }
-        return alert(data.error.message);
+        return alert(errorMessage);
         // throw new Error(errorMessage);
         })
       }
@@ -75,13 +78,14 @@ const Signup = () => {
       console.log('successful',data)
       history('/verifyemail')
       localStorage.setItem("token" , data.idToken);
+      dispatch(authActions.login(data.idToken))  //dispatching action
       //authCtx.setToken(data.idToken);
       return  alert('Success');
       }                   
     })
     .catch((err) => {
         alert(err.message)
-    //   return <Alert variant='danger'>{err.message}</Alert>;
+    
     })
   }
 
