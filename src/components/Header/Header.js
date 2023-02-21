@@ -4,7 +4,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import classes from './Header.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from '../../store/AuthSlicer';
-import { themeActions } from "../../store/ThemeSlicer";
+//import { themeActions } from "../../store/ThemeSlicer";
 
 
 const MainNavigation = () => {
@@ -38,14 +38,14 @@ const MainNavigation = () => {
               style={{ height: "25px" }}
               className="form-check mt-2 ml-3 form-switch"
             >
-              <input
+              {/* <input
                 onChange={() => dispatch(themeActions.changeTheme())}
                 className="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
-              />
-              <label className="text-white">Night mode</label>
+              /> */}
+              
             </div>
         </ul>
       </nav>

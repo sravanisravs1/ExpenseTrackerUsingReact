@@ -4,6 +4,7 @@ import { Container ,Button} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteExpanse, getExpenses } from "./ExpenseRequests";
 import {CSVLink} from 'react-csv';
+import { themeActions } from "../../store/ThemeSlicer";
 
 function ExpenseTable(props) {
     //const expCtx = useContext(ExpenseContext);
@@ -31,7 +32,19 @@ function ExpenseTable(props) {
             <div className=" d-flex justify-content-around mx-5 p-1 shadow" style={{backgroundColor:'#99b2bf'}}>
                 <h3>Total Amount Spent:{total}</h3>
                 {total > 10000 && (
-                <Button variant='success' style={{margin:'1rem'}}>Unlock Premium</Button>
+                <div
+                style={{ height: "25px" }}
+                className="form-check mt-2 ml-3 form-switch"
+              >
+                <input
+                  onChange={() => dispatch(themeActions.changeTheme())}
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label className="text-white">Unlock Premium</label>
+              </div>
                 )}
                 {expenses && 
                 (<CSVLink data={expenses}>
